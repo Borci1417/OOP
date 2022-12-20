@@ -18,6 +18,7 @@ public:
     string ime;
     string priimek;
     string naslov;
+    
     // Setter
     void setPlaca(int p) {
         placa = p;
@@ -37,7 +38,12 @@ public:
         return davcna;
     }
 };
-
+//Derived class
+class Naslov: public Zaposleni{
+    public:
+    string address;
+}; 
+//main
 int main() {
     int n = 30;
     random_device rd;
@@ -47,7 +53,7 @@ int main() {
     Zaposleni delavec;
     vector<Zaposleni> worker(n);
     vector<Zaposleni> temp(2);
-
+//zanka za izpis
     for(int i = 0; i<n; i++)
     {
         worker[i].ime = imena[rd()%20];
@@ -67,6 +73,7 @@ int main() {
         worker[i].getDavcna();
         cout<<worker[i].getDavcna()<<endl<<endl;
     }
+//zanka za razvrstitev
     for(int i = 0;i<n;i++)
     {
         for(int j = 0;j<n;j++)
@@ -79,6 +86,7 @@ int main() {
             }
         }
     }
+//izpis najvišje in najmanjše plače
     cout<<"Najvisja placa: "<<endl;
     cout<<worker[0].ime<<endl;
     cout<<worker[0].priimek<<endl;
@@ -96,6 +104,7 @@ int main() {
     cout<<endl;
 
     float vsota;
+//zanka
     for(int i = 0;i<n;i++)
     {
         vsota = vsota + worker[i].getPlaca();
@@ -104,6 +113,7 @@ int main() {
     cout<<vsota;
 
     float nagrada;
+//zanka za določanje nagrade
     for(int i = 0;i<n;i++)
     {
         nagrada = rd()%20+10;
@@ -111,10 +121,12 @@ int main() {
         nagrada = nagrada+1;
         worker[i].getPlaca()*nagrada;
     }
+//zanka za razvrstitev
     for(int i = 0;i<n;i++)
     {
         for(int j = 0;j<n;j++)
         {
+        //pogoj
             if(worker[i].getPlaca()>worker[j].getPlaca())
             {
                 swap(temp[0], worker[i]);
@@ -123,7 +135,7 @@ int main() {
             }
         }
     }
-
+//zanka za izpis
     for(int i = 0; i<n;i++)
     {
         cout<<"Delavec "<<i+1<<endl;
